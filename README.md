@@ -1,2 +1,5 @@
-# anywidget-3dviewer-GLTF
-3dviewer-GLTF for Jupyter
+# anywidget_3dviewer
+
+```sh
+pip install anywidget_3dviewer
+```
