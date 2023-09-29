@@ -1,12 +1,16 @@
 {
 	"scripts": {
 		"dev": "npm run build -- --sourcemap=inline --watch",
-		"build": "esbuild js/widget.jsx --minify --format=esm --bundle --outdir=src/anywidget_3dviewer/static"
+		"build": "esbuild js/*.jsx --minify --format=esm --bundle --outdir=src/anywidget_3dviewer/static"
 	},
 	"dependencies": {
 		"@anywidget/react": "^0.0.2",
+		"@react-three/drei": "^9.86.1",
+		"@react-three/fiber": "^8.14.3",
+		"@types/three": "^0.156.0",
 		"react": "^18.2.0",
-		"react-dom": "^18.2.0"
+		"react-dom": "^18.2.0",
+		"three": "^0.157.0"
 	},
 	"devDependencies": {
 		"esbuild": "^0.19.2"
