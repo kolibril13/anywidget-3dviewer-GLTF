@@ -4,7 +4,7 @@ import { Canvas } from "@react-three/fiber";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader.js";
 import { OrbitControls } from "@react-three/drei";
 
-function BlenderModel(props) {
+function My3DModel(props) {
   const ref = useRef();
   const jsonStr = props.torusModelUrl;
   const [gltfModel, setGltfModel] = useState(null);
@@ -34,7 +34,7 @@ export const render = createRender(() => {
         <pointLight position={[-1, 0, 1]} />
         {/* -1 goes to 1 */}
         <Suspense fallback={null}>
-          <BlenderModel position={[2, -2, -2]} torusModelUrl={gltf_data} />
+          <My3DModel position={[2, -2, -2]} torusModelUrl={gltf_data} />
         </Suspense>
         <OrbitControls enablePan={false} />
         <perspectiveCamera position={[1, -3, 4]} />
