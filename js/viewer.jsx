@@ -30,13 +30,27 @@ export const render = createRender(() => {
   return (
     <div style={{ height: "500px" }}>
       <Canvas style={{ height: "100%" }}>
-        <ambientLight />
-        <pointLight position={[-1, 0, 1]} />
-        {/* -1 goes to 1 */}
+        {/* Increase the intensity of the ambient light */}
+        <ambientLight intensity={1.5} />
+
+        {/* Increase the intensity of the point light */}
+        <pointLight position={[-1, 0, 1]} intensity={2} />
+
+        {/* Add an additional point light for better illumination */}
+        <pointLight position={[1, 2, -1]} intensity={1.5} />
+
+        {/* Use a hemispheric light for soft illumination from above and below */}
+        <hemisphereLight
+          skyColor={"#ffffff"}
+          groundColor={"#888888"}
+          intensity={0.5}
+        />
+
         <Suspense fallback={null}>
           <My3DModel position={[2, -2, -2]} torusModelUrl={gltf_data} />
         </Suspense>
-        <OrbitControls enablePan={false} />
+
+        <OrbitControls enableRotate={true} minPolarAngle={Math.PI / 2} maxPolarAngle={Math.PI / 2} />
         <perspectiveCamera position={[1, -3, 4]} />
       </Canvas>
     </div>
