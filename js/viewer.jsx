@@ -1,11 +1,13 @@
 import { createRender, useModelState } from "@anywidget/react";
 import React, { useRef, useState, useEffect, Suspense } from "react";
-import { Canvas } from "@react-three/fiber";
+
+import { Canvas, useThree, useFrame } from "@react-three/fiber";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader.js";
 import { OrbitControls } from "@react-three/drei";
 
 function My3DModel(props) {
   const ref = useRef();
+
   const jsonStr = props.torusModelUrl;
   const [gltfModel, setGltfModel] = useState(null);
 
@@ -29,19 +31,45 @@ function My3DModel(props) {
   );
 }
 
+function DirectionalLight() {
+  const { camera } = useThree();
+  const [lightPosition, setLightPosition] = useState([0, 0, 0]);
+
+  useFrame(() => {
+    // Update the light position to match the camera position
+    setLightPosition([camera.position.x, camera.position.y, camera.position.z]);
+  });
+
+  return <directionalLight position={lightPosition} intensity={2} />;
+}
+
 export const render = createRender(() => {
   const [gltf_data] = useModelState("gltf_data");
 
+
+  // this links camera to light position
+  const orbitControlsRef = useRef();
+  const [cameraPosition, setCameraPosition] = useState({ x: 0, y: 0, z: 0 });
+
+  useEffect(() => {
+    if (orbitControlsRef.current && orbitControlsRef.current.object) {
+      setCameraPosition(orbitControlsRef.current.object.position);
+    }
+    console.log("hi");
+  }, [orbitControlsRef]);
+
   return (
-    <div style={{ height: "500px" }}>
-      <Canvas style={{ height: "100%" }}>
-        <pointLight position={[0,0, 20]} intensity={2000.0} /> {/* Increase intensity */}
-        <Suspense fallback={null}>
-          <My3DModel position={[2, -2, -2]} torusModelUrl={gltf_data} />
-        </Suspense>
-        <OrbitControls enablePan={false} />
-        <perspectiveCamera position={[1, -3, 10]} />
-      </Canvas>
-    </div>
+    <>
+      <div style={{ height: "500px" }}>
+        <Canvas style={{ height: "100%" }}>
+          <DirectionalLight />
+          {/* <gridHelper args={[20, 20]} /> */}
+          <Suspense fallback={null}>
+            <My3DModel position={[2, -2, -2]} torusModelUrl={gltf_data} />
+          </Suspense>
+          <OrbitControls ref={orbitControlsRef} enablePan={false} />
+        </Canvas>
+      </div>
+    </>
   );
 });
