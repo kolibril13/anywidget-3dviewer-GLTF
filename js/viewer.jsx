@@ -19,10 +19,16 @@ function My3DModel(props) {
   if (!gltfModel) return null;
   return (
     <group position={[1, -2, 2]} rotation={[1, 1, 0]}>
-      <primitive object={gltfModel.scene} ref={ref} {...props} />
+      <primitive
+        object={gltfModel.scene}
+        ref={ref}
+        scale={[0.5, 0.5, 0.5]}
+        {...props}
+      />
     </group>
   );
 }
+
 
 export const render = createRender(() => {
   const [gltf_data] = useModelState("gltf_data");
@@ -31,13 +37,12 @@ export const render = createRender(() => {
     <div style={{ height: "500px" }}>
       <Canvas style={{ height: "100%" }}>
         <ambientLight />
-        <pointLight position={[-1, 0, 1]} />
-        {/* -1 goes to 1 */}
+        <pointLight position={[-4, 0, 1]} />
         <Suspense fallback={null}>
           <My3DModel position={[2, -2, -2]} torusModelUrl={gltf_data} />
         </Suspense>
         <OrbitControls enablePan={false} />
-        <perspectiveCamera position={[1, -3, 4]} />
+        <perspectiveCamera position={[1, -3, 10]} />
       </Canvas>
     </div>
   );
