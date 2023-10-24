@@ -11,3 +11,16 @@ https://github.com/kolibril13/anywidget-3dviewer-GLTF/assets/44469195/6251680f-b
 
 https://github.com/kolibril13/anywidget-3dviewer-GLTF/assets/44469195/9e219c10-ac02-45b9-8bce-7c0b85950f03
 
+
+
+
+# Changelog
+
+
+## 0.0.2
+
+implement DirectionalLight
+
+## 0.0.1
+
+initial release

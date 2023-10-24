@@ -8,3 +8,5 @@ __pycache__
 _MY_MODEL_DATA.gltf
 
 src/anywidget_3dviewer/static
+
+*.gltf
