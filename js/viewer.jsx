@@ -29,15 +29,13 @@ function My3DModel(props) {
   );
 }
 
-
 export const render = createRender(() => {
   const [gltf_data] = useModelState("gltf_data");
 
   return (
     <div style={{ height: "500px" }}>
       <Canvas style={{ height: "100%" }}>
-        <ambientLight />
-        <pointLight position={[-4, 0, 1]} />
+        <pointLight position={[0,0, 20]} intensity={2000.0} /> {/* Increase intensity */}
         <Suspense fallback={null}>
           <My3DModel position={[2, -2, -2]} torusModelUrl={gltf_data} />
         </Suspense>
