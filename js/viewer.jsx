@@ -20,11 +20,11 @@ function My3DModel(props) {
 
   if (!gltfModel) return null;
   return (
-    <group position={[1, -2, 2]} rotation={[1, 1, 0]}>
+    <group position={[0, 0, 0]} rotation={[1, 1, 0]}>
       <primitive
         object={gltfModel.scene}
         ref={ref}
-        scale={[0.5, 0.5, 0.5]}
+        scale={[4.5, 4.5, 4.5]}
         {...props}
       />
     </group>
@@ -46,7 +46,6 @@ function DirectionalLight() {
 export const render = createRender(() => {
   const [gltf_data] = useModelState("gltf_data");
 
-
   // this links camera to light position
   const orbitControlsRef = useRef();
   const [cameraPosition, setCameraPosition] = useState({ x: 0, y: 0, z: 0 });
@@ -65,8 +64,9 @@ export const render = createRender(() => {
           <DirectionalLight />
           {/* <gridHelper args={[20, 20]} /> */}
           <Suspense fallback={null}>
-            <My3DModel position={[2, -2, -2]} torusModelUrl={gltf_data} />
+            <My3DModel position={[0, 0, 0]} torusModelUrl={gltf_data} />
           </Suspense>
+
           <OrbitControls ref={orbitControlsRef} enablePan={false} />
         </Canvas>
       </div>
