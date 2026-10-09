@@ -17,6 +17,10 @@ https://github.com/kolibril13/anywidget-3dviewer-GLTF/assets/44469195/9e219c10-a
 # Changelog
 
 
+## 0.0.3
+
+update all JS dependencies to latest versions (React 19, @react-three/fiber 9, @react-three/drei 10, three 0.186)
+
 ## 0.0.2
 
 implement DirectionalLight
