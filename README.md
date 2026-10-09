@@ -1,5 +1,7 @@
 # anywidget_3dviewer
 
+[![PyPI](https://img.shields.io/pypi/v/anywidget_3dviewer.svg)](https://pypi.org/project/anywidget-3dviewer/)
+
 ```sh
 pip install anywidget_3dviewer
 ```
